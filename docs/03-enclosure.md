@@ -4,11 +4,11 @@ Three printed parts. The box holds the relay, the lid carries the pump, and the 
 
 ## Files
 
-| File | What it is |
-|---|---|
-| `cad/Vinegar_Doser_Box_80x80x53` | 80 x 80 x 53 mm box with relay pocket and barrel jack hole |
-| `cad/Vinegar_Doser_Lid_pump_mount` | Lid with 31 mm pump bore, reinforcing boss and M3 slots |
-| `cad/DrainFlo_Badge_drop_A_full_tagline` | Optional four colour badge, 60 x 34 x 2.1 mm |
+| Part | Download | What it is |
+|---|---|---|
+| Box | [STEP](../cad/Vinegar_Doser_Box_80x80x53.step) / [STL](../cad/Vinegar_Doser_Box_80x80x53.stl) | 80 x 80 x 53 mm box with relay pocket and barrel jack hole |
+| Lid | [STEP](../cad/Vinegar_Doser_Lid_pump_mount.step) / [STL](../cad/Vinegar_Doser_Lid_pump_mount.stl) | Lid with 31 mm pump bore, reinforcing boss and M3 slots |
+| Badge | [STEP](../cad/DrainFlo_Badge_drop_A_full_tagline.step) | Optional four colour badge, 60 x 34 x 2.1 mm. STEP only, see the Badge section |
 
 STEP files are provided so you can modify dimensions. STL files are provided for printing directly.
 

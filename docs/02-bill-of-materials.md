@@ -93,9 +93,9 @@ About 60 g of filament total. PLA is adequate for an attic in a temperate climat
 
 | File | Print time | Notes |
 |---|---|---|
-| `cad/Vinegar_Doser_Box_80x80x53` | ~2 h | Opening up, no supports |
-| `cad/Vinegar_Doser_Lid_pump_mount` | ~40 min | Flat face down, boss up, no supports |
-| `cad/DrainFlo_Badge_drop_A_full_tagline` | ~25 min | Optional, four colours |
+| [Box](../cad/Vinegar_Doser_Box_80x80x53.stl) | ~2 h | Opening up, no supports |
+| [Lid](../cad/Vinegar_Doser_Lid_pump_mount.stl) | ~40 min | Flat face down, boss up, no supports |
+| [Badge](../cad/DrainFlo_Badge_drop_A_full_tagline.step) | ~25 min | Optional, four colours, STEP only |
 
 Settings in [03 Enclosure](03-enclosure.md).
 

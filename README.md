@@ -68,6 +68,17 @@ images/           Photos, diagrams and the logo
 
 ---
 
+## Printed parts
+
+| Part | Download | Print time |
+|---|---|---|
+| Enclosure box | [STEP](cad/Vinegar_Doser_Box_80x80x53.step) / [STL](cad/Vinegar_Doser_Box_80x80x53.stl) | ~2 h |
+| Lid with pump mount | [STEP](cad/Vinegar_Doser_Lid_pump_mount.step) / [STL](cad/Vinegar_Doser_Lid_pump_mount.stl) | ~40 min |
+| DrainFlo badge, optional | [STEP](cad/DrainFlo_Badge_drop_A_full_tagline.step) | ~25 min |
+
+About 60 g of filament all in. Print settings and orientation in [03 Enclosure](docs/03-enclosure.md).
+
+---
 ## A finding worth knowing before you start
 
 **The Shelly 1 Gen4 exposes no auto off timer when running in Zigbee mode.** The Zigbee `on_time` attribute is silently ignored: send it and the relay turns on and stays on. This is not documented by Shelly and it is the single most important thing to understand about this build, because it means the off command depends entirely on Home Assistant being alive.
