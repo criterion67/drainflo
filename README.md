@@ -98,3 +98,7 @@ MIT. See [LICENSE](LICENSE).
 DrainFlo is an independent, non commercial, open source project. It is not affiliated with, endorsed by, sponsored by, or connected to any commercial product, company or brand. Any similarity between this project's name and any trademark is unintentional and no association is implied.
 
 Nothing is sold here and no money changes hands. The repository contains documentation and design files, published freely for anyone who wants to build their own.
+
+## Use of AI
+
+Portions of this project were developed utilizing AI assistance. The concept, design, physical build and all testing are mine, and all measurements in these docs came off my own bench.
