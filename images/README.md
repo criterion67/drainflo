@@ -1,23 +1,30 @@
 # Images
 
-Photos still to be taken. Suggested shots, in build order:
+Build photos from the reference installation, in build order.
 
-| Filename | Subject |
+| File | What it shows |
 |---|---|
-| `01-parts.jpg` | All components laid out before assembly |
-| `02-box-printed.jpg` | Box and lid off the printer |
-| `03-relay-in-pocket.jpg` | Relay seated in the box, lid off |
-| `04-pump-on-lid.jpg` | Pump flange bolted to the lid, motor hanging through |
-| `05-wiring.jpg` | Wiring complete, lid off, junctions visible |
-| `06-cap-drilled.jpg` | Cleanout cap with tubing pressed through |
-| `07-jug-in-bucket.jpg` | Jug and drilled cap inside the containment bucket |
-| `08-installed.jpg` | Finished install at the air handler |
-| `09-notification.png` | A dose complete notification on the phone |
-| `10-badge.jpg` | Printed badge close up |
+| `01-pump-mounted-on-lid.jpg` | Pump flange bolted to the lid with the motor hanging through the bore, box open beside it |
+| `02-enclosure-wiring.jpg` | Motor leads and relay wiring joined with lever nuts, lid off |
+| `03-relay-and-junctions.jpg` | Top down into the box: relay in its pocket, the two junction points, barrel jack in the wall |
+| `04-enclosure-finished.jpg` | Closed enclosure with the DrainFlo badge, pump head and tubing on the outside |
+| `05-cleanout-injection-point.jpg` | Tubing entering the drilled PVC cleanout cap, with the condensate safety switch on the tee |
+| `06-jug-cap-tubing-and-vent.jpg` | Jug cap close up: pickup tubing pressed through, and the vent hole beside it |
+| `07-jug-in-containment-bucket.jpg` | Vinegar jug standing in the containment bucket, tubing routed up to the cleanout |
+| `08-leak-sensor-in-bucket.jpg` | Leak sensor in the bottom of the bucket beside the jug |
+| `09-installed-at-air-handler.jpg` | The finished install at the attic air handler |
 
-Diagrams to add:
+## Still to add
 
-| Filename | Subject |
+| Subject | Why it would help |
 |---|---|
-| `wiring-diagram.svg` | The six connection terminal map |
-| `logo.svg` | DrainFlo logo |
+| All components laid out before assembly | Shows the whole parts list at a glance |
+| A dose complete notification on the phone | Shows what the system actually tells you |
+| Printed badge close up | The four colour emboss detail |
+
+## Diagrams
+
+| Subject | Status |
+|---|---|
+| Wiring diagram, the six connection terminal map | Not yet added; see [docs/05-wiring.md](../docs/05-wiring.md) |
+| DrainFlo logo | Not yet added |
