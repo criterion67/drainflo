@@ -24,6 +24,11 @@ The Shelly 1 Gen4 has six terminals: **O, I, SW, 12V, L, N**.
 
 `I` and `O` are the two sides of the dry contact, which is just an isolated switch. Feeding `I` from the positive rail means the pump only sees voltage when the relay closes. The relay itself stays powered throughout.
 
+![Relay seated in the box with the barrel jack and lever nut junctions](../images/03-relay-and-junctions.jpg)
+*Looking into the box: relay in its pocket, the two lever nut junction points, barrel jack threaded through the wall.*
+
+![Motor leads and relay wiring joined with lever nuts](../images/02-enclosure-wiring.jpg)
+*All six connections made, lid still off. Wire it flat on a bench like this.*
 ## Junction points
 
 The positive rail splits two ways and the negative rail splits two ways, so you need two junction points. WAGO lever nuts or a small terminal block. Do not try to force two wires under one Shelly screw terminal.

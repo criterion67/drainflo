@@ -16,6 +16,8 @@ Most condensate drain lines have a vertical riser with a cap on top, which is wh
 
 **The tube end must never sit in standing water.** If it does, you give condensate a path to wick back up.
 
+![Tubing entering the drilled PVC cleanout cap](../images/05-cleanout-injection-point.jpg)
+*The injection point. Tubing pressed through a 3/16 inch hole drilled in a spare cleanout cap, hanging about 3 inches into the riser. No fittings anywhere in the liquid path.*
 ## Why not a fitting
 
 Earlier iterations of this build used a threaded stack: a glued female adapter, a reducing bushing and a barbed fitting. It works but adds three leak paths, several inches of height, and a corrosion question. Vinegar attacks brass, and stainless grade matters above 50C.
@@ -36,6 +38,8 @@ The vent exists because as the pump draws liquid out, air has to get back in or 
 
 If you fit a short stub of tube in the vent hole, run it outside the jug, loop it downward, and end it inside the containment bucket. Attic heat can push vapour or a little liquid out, and the loop catches it.
 
+![Jug cap with the pickup tubing pressed through and the vent hole beside it](../images/06-jug-cap-tubing-and-vent.jpg)
+*The jug cap. Pickup tubing press fit through a 3/16 inch hole, and the 1/8 inch vent hole beside it, staying in the air space above the liquid.*
 ## Containment
 
 **This is a requirement, not a suggestion.**
@@ -44,6 +48,11 @@ The jug sits inside a bucket whose capacity exceeds the jug's. A 1 gallon jug in
 
 Put a **water leak sensor in the bottom of the bucket**, beside the jug. Containment without detection means you find out at the next refill.
 
+![Vinegar jug standing in the orange containment bucket](../images/07-jug-in-containment-bucket.jpg)
+*A 1 gallon jug inside a 2 gallon bucket. A full jug failure is fully contained.*
+
+![Leak sensor in the bottom of the bucket beside the jug](../images/08-leak-sensor-in-bucket.jpg)
+*The leak sensor goes in the bottom of the bucket, beside the jug. Containment without detection just delays the discovery.*
 ## Layout
 
 Two rules:

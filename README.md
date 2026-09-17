@@ -10,6 +10,10 @@ It replaces the monthly chore of climbing into the attic with a measuring cup.
 
 ---
 
+![The finished DrainFlo install at the attic air handler](images/09-installed-at-air-handler.jpg)
+*The finished install. Enclosure on the air handler, vinegar jug in its containment bucket, tubing run to the drain line cleanout.*
+
+---
 ## Why I built this
 
 Commercial automatic drain line dosers exist. The one that prompted this project is cloud dependent and uses proprietary cartridges of its own cleaning fluid, which means an account you have to keep, a service that has to stay running, and a consumable you can only buy from one place at a price they set.

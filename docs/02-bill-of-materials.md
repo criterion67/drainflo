@@ -25,6 +25,8 @@ Links are provided for convenience and go stale quickly. **The spec column is wh
 | M3 x 16 machine screws, nuts, washers | 2 of each | few $ | hardware store | Pump flange to lid |
 | M3 x 10 machine screws | 4 | $2 | hardware store | Lid to box |
 
+![Core parts laid out on the bench before assembly](../images/00-parts-laid-out.jpg)
+*Most of the core parts: 12V supply, Shelly 1 Gen4, panel mount barrel jacks, silicone tubing, lever nuts.*
 ## Leak sensor options
 
 **This is the part people skip, and it is the one that tells you the containment bucket did its job.** Without it you find out at the next refill.

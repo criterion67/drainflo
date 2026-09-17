@@ -46,6 +46,11 @@ Developed on a Bambu Lab P2S with a 0.4 mm nozzle.
 4. **Wire it** per [05 Wiring](05-wiring.md), still with the lid off.
 5. **Close the lid** with four M3 x 10 screws into the corner posts. Do not exceed 10 mm: past that the screw leaves the pilot hole and enters the hollow post, where it grips nothing and can split it.
 
+![Pump bolted to the lid with the motor hanging through the bore](../images/01-pump-mounted-on-lid.jpg)
+*Pump mounted to the lid before the lid goes on the box. Flange outside, motor hanging through the bore. Do this on a bench, not reaching into a 53 mm box.*
+
+![The closed enclosure with the DrainFlo badge](../images/04-enclosure-finished.jpg)
+*The finished enclosure. Badge above the pump bore, INLET and OUTLET labelled on the lid.*
 ## Badge
 
 Optional. Four colours in a single 0.6 mm raised layer band, so a multi material system purges once rather than per feature.
