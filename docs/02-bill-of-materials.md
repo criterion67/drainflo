@@ -17,7 +17,7 @@ Links are provided for convenience and go stale quickly. **The spec column is wh
 | 12V DC power supply | 12V 2A, centre positive, 5.5 x 2.1 mm plug | $13 for 2 | [link](https://www.amazon.com/dp/B077PW5JC3) | 1A is enough; headroom is free. Meter the polarity before use |
 | Vinegar | 1 gallon, cleaning or distilled white | $4 | [link](https://www.walmart.com/ip/GV-Vinegar-128oz/15941853266) | Its own HDPE jug is the reservoir |
 | Containment bucket | 2 gallon | $6 | [link](https://www.homedepot.com/p/The-Home-Depot-2-gal-Homer-Bucket-RG502HD/316355946) | Must exceed the jug's capacity |
-| Water leak sensor | Any Home Assistant compatible | $25 | [link](https://www.amazon.com/dp/B07Z7QWJBP) | Goes in the bottom of the bucket. Reference build uses a YoLink YS7903, which needs a YoLink hub |
+| Water leak sensor | Any Home Assistant compatible | $15 to $30 | see below | Goes in the bottom of the bucket. Options in the next section |
 | Lever nut connectors, 3 conductor | WAGO 221-413, 24-12 AWG | $7 for 10 | [link](https://www.amazon.com/dp/B0GLHLRZR4) | The two junction points |
 | Lever nut connectors, 2 conductor | WAGO 221-412, 24-12 AWG | $6 for 10 | [link](https://www.amazon.com/dp/B072PT3JNL) | Handy for the single O to pump run |
 | Hookup wire | 18 AWG, a few feet | on hand | [link](https://www.amazon.com/dp/B0DXKKCS5R) | Any 18 AWG will do. The reference build used 18/3 thermostat cable left over from another job |
@@ -25,6 +25,24 @@ Links are provided for convenience and go stale quickly. **The spec column is wh
 | M3 x 16 machine screws, nuts, washers | 2 of each | few $ | hardware store | Pump flange to lid |
 | M3 x 10 machine screws | 4 | $2 | hardware store | Lid to box |
 
+## Leak sensor options
+
+**This is the part people skip, and it is the one that tells you the containment bucket did its job.** Without it you find out at the next refill.
+
+Any sensor Home Assistant can see will do. A few that work:
+
+| Sensor | Protocol | Approx. | Link |
+|---|---|---|---|
+| YoLink YS7903 | YoLink, needs a YoLink hub | $25 | [link](https://www.amazon.com/dp/B07Z7QWJBP) |
+| ThirdReality WL2 | Zigbee, needs a Zigbee coordinator | $15 | [link](https://www.amazon.com/dp/B0GK19F6Z2) |
+| Aqara T1 | Zigbee, needs a Zigbee coordinator | $18 | [link](https://www.amazon.com/dp/B0DWXHMFQS) |
+| Shelly Flood S Gen4 | WiFi, Bluetooth, Zigbee or Matter | $30 | [link](https://www.amazon.com/dp/B0H3QG45XL) |
+
+The reference build uses the YoLink because one was already on hand.
+
+**If you have no hub of any kind, the Shelly Flood S Gen4 is the one to get.** Per its listing it speaks WiFi as well as Zigbee and Matter, so it can reach Home Assistant on your network alone. The other three need a coordinator or bridge you may not own, which turns a $15 sensor into a $60 purchase.
+
+**Put it in the bottom of the bucket, beside the jug.** Not on the platform next to the air handler. A pan sensor tells you the drain line clogged, which is a different failure. This one tells you the vinegar jug leaked.
 ## Pump selection
 
 The build was developed around a **Kamoer NKP 12V** with a 3mm ID x 5mm OD tube. Any similar 12V DC peristaltic dosing pump will work. What to match:
