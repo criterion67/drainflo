@@ -4,6 +4,8 @@ Build photos from the reference installation, in build order.
 
 | File | What it shows |
 |---|---|
+| `00-parts-laid-out.jpg` | Core parts before assembly: 12V supply, Shelly 1 Gen4, barrel jacks, tubing |
+| `00b-bench-setup.jpg` | Wider view of the same parts on the bench |
 | `01-pump-mounted-on-lid.jpg` | Pump flange bolted to the lid with the motor hanging through the bore, box open beside it |
 | `02-enclosure-wiring.jpg` | Motor leads and relay wiring joined with lever nuts, lid off |
 | `03-relay-and-junctions.jpg` | Top down into the box: relay in its pocket, the two junction points, barrel jack in the wall |
@@ -18,7 +20,6 @@ Build photos from the reference installation, in build order.
 
 | Subject | Why it would help |
 |---|---|
-| All components laid out before assembly | Shows the whole parts list at a glance |
 | A dose complete notification on the phone | Shows what the system actually tells you |
 | Printed badge close up | The four colour emboss detail |
 
