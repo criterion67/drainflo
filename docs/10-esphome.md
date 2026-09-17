@@ -8,7 +8,7 @@ If Home Assistant dies mid dose, the ESP32 still shuts the pump off.
 
 | | Commercial relay | ESPHome |
 |---|---|---|
-| Cost | ~$19 | ~$8 |
+| Controller cost | ~$28 | ~$8 |
 | Soldering | None | Yes |
 | Hardware watchdog on Zigbee | **No** | **Yes** |
 | Hardware watchdog on WiFi | Yes | Yes |
