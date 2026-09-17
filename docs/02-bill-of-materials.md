@@ -14,10 +14,10 @@ Links are provided for convenience and go stale quickly. **The spec column is wh
 | Dry contact relay | Shelly 1 Gen4, UL listed | $28 | [link](https://www.amazon.com/dp/B0H8YW595V) | Must accept 12V DC power. See alternatives below |
 | Silicone tubing | 3mm ID x 5mm OD, 9.8 ft | $9 | [link](https://www.amazon.com/dp/B0FMF45JZH) | Must match the pump's tube size |
 | Panel mount barrel jack | 5.5 x 2.1 mm, 11 mm panel hole | $6 for 6 | [link](https://www.amazon.com/dp/B0GGN5MWH5) | Only one needed |
-| 12V DC power supply | 12V, 1A or more, centre positive | on hand | _TBD_ | 2A is fine, headroom is free |
+| 12V DC power supply | 12V 2A, centre positive, 5.5 x 2.1 mm plug | $13 for 2 | [link](https://www.amazon.com/dp/B077PW5JC3) | 1A is enough; headroom is free. Meter the polarity before use |
 | Vinegar | 1 gallon, cleaning or distilled white | $4 | [link](https://www.walmart.com/ip/GV-Vinegar-128oz/15941853266) | Its own HDPE jug is the reservoir |
 | Containment bucket | 2 gallon | $6 | [link](https://www.homedepot.com/p/The-Home-Depot-2-gal-Homer-Bucket-RG502HD/316355946) | Must exceed the jug's capacity |
-| Water leak sensor | Any Home Assistant compatible | varies | _TBD_ | Goes in the bottom of the bucket |
+| Water leak sensor | Any Home Assistant compatible | $25 | [link](https://www.amazon.com/dp/B07Z7QWJBP) | Goes in the bottom of the bucket. Reference build uses a YoLink YS7903, which needs a YoLink hub |
 | Lever nut connectors, 3 conductor | WAGO 221-413, 24-12 AWG | $7 for 10 | [link](https://www.amazon.com/dp/B0GLHLRZR4) | The two junction points |
 | Lever nut connectors, 2 conductor | WAGO 221-412, 24-12 AWG | $6 for 10 | [link](https://www.amazon.com/dp/B072PT3JNL) | Handy for the single O to pump run |
 | Hookup wire | 18 AWG, a few feet | on hand | [link](https://www.amazon.com/dp/B0DXKKCS5R) | Any 18 AWG will do. The reference build used 18/3 thermostat cable left over from another job |
@@ -54,12 +54,14 @@ Other dry contact relay modules that take 12V DC work equally well. Generic Zigb
 
 Instead of a commercial relay you can drive the pump from a microcontroller. This costs less and gives you a hardware enforced maximum runtime, at the price of soldering.
 
-| Part | Approx. | Link |
-|---|---|---|
-| Seeed XIAO ESP32C3 | $5 | _TBD_ |
-| IRLB8721PBF MOSFET | $1 | _TBD_ |
-| 100 ohm and 10k resistors | pennies | _TBD_ |
-| MP1584EN buck converter module | $2 | _TBD_ |
+| Part | Approx. |
+|---|---|
+| Seeed XIAO ESP32C3 | $5 |
+| IRLB8721PBF MOSFET | $1 |
+| 100 ohm and 10k resistors | pennies |
+| MP1584EN buck converter module | $2 |
+
+Not yet built, so no links. These are stock parts available from any electronics supplier.
 
 Full detail in [10 ESPHome](10-esphome.md).
 
