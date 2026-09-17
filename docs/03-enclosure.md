@@ -8,7 +8,7 @@ Three printed parts. The box holds the relay, the lid carries the pump, and the 
 |---|---|---|
 | Box | [STEP](../cad/Vinegar_Doser_Box_80x80x53.step) / [STL](../cad/Vinegar_Doser_Box_80x80x53.stl) | 80 x 80 x 53 mm box with relay pocket and barrel jack hole |
 | Lid | [STEP](../cad/Vinegar_Doser_Lid_pump_mount.step) / [STL](../cad/Vinegar_Doser_Lid_pump_mount.stl) | Lid with 31 mm pump bore, reinforcing boss and M3 slots |
-| Badge | [STEP](../cad/DrainFlo_Badge_drop_A_full_tagline.step) | Optional four colour badge, 60 x 34 x 2.1 mm. STEP only, see the Badge section |
+| Badge | [STEP](../cad/DrainFlo_Badge_drop_A_full_tagline.step) | Optional four color badge, 60 x 34 x 2.1 mm. STEP only, see the Badge section |
 
 STEP files are provided so you can modify dimensions. STL files are provided for printing directly.
 
@@ -34,7 +34,7 @@ Developed on a Bambu Lab P2S with a 0.4 mm nozzle.
 
 ## Lid features
 
-- **31 mm bore** offset from centre, positioned so the motor hangs beside the relay rather than above it. The relay's height therefore does not constrain the design.
+- **31 mm bore** offset from center, positioned so the motor hangs beside the relay rather than above it. The relay's height therefore does not constrain the design.
 - **6 mm reinforcing boss** on the inner face, bringing material under the pump flange to 8 mm total.
 - **Two M3 slots** elongated along the bore's long axis, covering flange screw pitches from about 46 to 49 mm.
 
@@ -53,10 +53,10 @@ Developed on a Bambu Lab P2S with a 0.4 mm nozzle.
 *The finished enclosure. Badge above the pump bore, INLET and OUTLET labelled on the lid.*
 ## Badge
 
-Optional. Four colours in a single 0.6 mm raised layer band, so a multi material system purges once rather than per feature.
+Optional. Four colors in a single 0.6 mm raised layer band, so a multi material system purges once rather than per feature.
 
 The STEP file imports as one object with four named bodies. Assign a filament to each: base black, pipe light blue, joints dark blue, text white.
 
-Print four at once. Purge waste is charged per colour change per layer, not per object, so spares are nearly free.
+Print four at once. Purge waste is charged per color change per layer, not per object, so spares are nearly free.
 
 Attach with VHB or double sided foam tape to the lid's outer face, above the pump bore. Clearances are tight, roughly 2 mm to the bore and 2.6 mm to the nearest corner screw recess, so do not scale it up.

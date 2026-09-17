@@ -21,7 +21,7 @@ Build photos from the reference installation, in build order.
 | Subject | Why it would help |
 |---|---|
 | A dose complete notification on the phone | Shows what the system actually tells you |
-| Printed badge close up | The four colour emboss detail |
+| Printed badge close up | The four color emboss detail |
 
 ## Diagrams
 

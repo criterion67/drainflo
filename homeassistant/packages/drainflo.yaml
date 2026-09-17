@@ -212,7 +212,7 @@ automation:
       turns the pump off itself, the safety_cutoff branch force offs anything
       still running at 6 minutes, and the ha_start branch force offs on every
       restart in case HA died mid dose. Physical containment is the last line
-      of defence and is not optional.
+      of defense and is not optional.
 
       VERIFICATION. A commanded dose is not assumed to have worked. The switch
       is checked before commanding, then checked again 5 seconds after turn on.

@@ -8,7 +8,7 @@
 
 **Diagnosis.** Publish `{"state": "ON"}` to the same topic. If that works, your topic is correct and the `on_time` attribute specifically is being discarded by the device.
 
-**Cause.** The Gen4 firmware in Zigbee profile does not implement the OnOff cluster's timed off behaviour. Zigbee2MQTT exposes only a plain on/off state for it, with no countdown, auto off or `on_time` entity.
+**Cause.** The Gen4 firmware in Zigbee profile does not implement the OnOff cluster's timed off behavior. Zigbee2MQTT exposes only a plain on/off state for it, with no countdown, auto off or `on_time` entity.
 
 **Workarounds.**
 - Accept it and rely on the software cutoffs in the package. This is what the reference build does.

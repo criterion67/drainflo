@@ -39,7 +39,7 @@ There is none that matters. A brushed DC motor reverses direction when you swap 
 
 ## Before you power up
 
-**Meter the barrel jack.** Centre positive is the convention, not a guarantee. Plug in the supply, probe centre against sleeve, confirm you read +12 and not −12.
+**Meter the barrel jack.** Center positive is the convention, not a guarantee. Plug in the supply, probe center against sleeve, confirm you read +12 and not −12.
 
 **Meter the supply itself, unloaded.** It should read close to 12.0 V. Older unregulated wall warts can sit at 16 to 18 V with no load, which lands between the Shelly's 12V and 24 to 48V input ranges. Any modern switching supply will be flat at 12 V.
 

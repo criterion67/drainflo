@@ -14,7 +14,7 @@ Links are provided for convenience and go stale quickly. **The spec column is wh
 | Dry contact relay | Shelly 1 Gen4, UL listed | $28 | [link](https://www.amazon.com/dp/B0H8YW595V) | Must accept 12V DC power. See alternatives below |
 | Silicone tubing | 3mm ID x 5mm OD, 9.8 ft | $9 | [link](https://www.amazon.com/dp/B0FMF45JZH) | Must match the pump's tube size |
 | Panel mount barrel jack | 5.5 x 2.1 mm, 11 mm panel hole | $6 for 6 | [link](https://www.amazon.com/dp/B0GGN5MWH5) | Only one needed |
-| 12V DC power supply | 12V 2A, centre positive, 5.5 x 2.1 mm plug | $13 for 2 | [link](https://www.amazon.com/dp/B077PW5JC3) | 1A is enough; headroom is free. Meter the polarity before use |
+| 12V DC power supply | 12V 2A, center positive, 5.5 x 2.1 mm plug | $13 for 2 | [link](https://www.amazon.com/dp/B077PW5JC3) | 1A is enough; headroom is free. Meter the polarity before use |
 | Vinegar | 1 gallon, cleaning or distilled white | $4 | [link](https://www.walmart.com/ip/GV-Vinegar-128oz/15941853266) | Its own HDPE jug is the reservoir |
 | Containment bucket | 2 gallon | $6 | [link](https://www.homedepot.com/p/The-Home-Depot-2-gal-Homer-Bucket-RG502HD/316355946) | Must exceed the jug's capacity |
 | Water leak sensor | Any Home Assistant compatible | $15 to $30 | see below | Goes in the bottom of the bucket. Options in the next section |
@@ -95,7 +95,7 @@ About 60 g of filament total. PLA is adequate for an attic in a temperate climat
 |---|---|---|
 | [Box](../cad/Vinegar_Doser_Box_80x80x53.stl) | ~2 h | Opening up, no supports |
 | [Lid](../cad/Vinegar_Doser_Lid_pump_mount.stl) | ~40 min | Flat face down, boss up, no supports |
-| [Badge](../cad/DrainFlo_Badge_drop_A_full_tagline.step) | ~25 min | Optional, four colours, STEP only |
+| [Badge](../cad/DrainFlo_Badge_drop_A_full_tagline.step) | ~25 min | Optional, four colors, STEP only |
 
 Settings in [03 Enclosure](03-enclosure.md).
 
