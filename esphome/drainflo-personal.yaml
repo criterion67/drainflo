@@ -1,0 +1,139 @@
+substitutions:
+  device_name: drainflo
+  friendly_name: DrainFlo
+  pump_pin: GPIO5
+  max_run_seconds: "300"
+
+esphome:
+  name: ${device_name}
+  friendly_name: ${friendly_name}
+  comment: >-
+    Doses distilled white vinegar into the attic air handler condensate drain
+    line cleanout. A Kamoer NKP 12V peristaltic pump is switched on the low
+    side by an IRLB8721 MOSFET on ${pump_pin}. Dose volume is set purely by
+    run time, calibrated once against a measuring cup. Dose counting and
+    refill alerts live in Home Assistant, not on this device.
+  on_boot:
+    priority: -100
+    then:
+      - switch.turn_off: pump
+
+esp32:
+  board: seeed_xiao_esp32c3
+  variant: esp32c3
+  framework:
+    type: esp-idf
+
+logger:
+
+api:
+  encryption:
+    key: !secret drainflo_api_key
+
+ota:
+  - platform: esphome
+    password: !secret drainflo_ota_password
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+  ap:
+    ssid: "DrainFlo Fallback"
+    password: !secret drainflo_ap_password
+
+captive_portal:
+
+output:
+  - platform: gpio
+    pin: ${pump_pin}
+    id: pump_output
+
+switch:
+  - platform: output
+    id: pump
+    output: pump_output
+    internal: true
+    restore_mode: ALWAYS_OFF
+    on_turn_on:
+      mode: restart
+      then:
+        - delay: ${max_run_seconds}s
+        - switch.turn_off: pump
+        - logger.log:
+            level: WARN
+            format: "Pump hit the hard runtime limit and was shut off"
+
+number:
+  - platform: template
+    id: dose_seconds
+    name: "Dose Duration"
+    icon: mdi:timer-sand
+    entity_category: config
+    unit_of_measurement: s
+    min_value: 5
+    max_value: 290
+    step: 1
+    initial_value: 205
+    restore_value: true
+    optimistic: true
+
+script:
+  - id: dispense_dose
+    mode: single
+    then:
+      - logger.log: "Starting a vinegar dose"
+      - switch.turn_on: pump
+      - delay: !lambda "return id(dose_seconds).state * 1000;"
+      - switch.turn_off: pump
+      - logger.log: "Vinegar dose complete"
+
+  - id: prime_pump
+    mode: single
+    then:
+      - switch.turn_on: pump
+      - delay: 20s
+      - switch.turn_off: pump
+
+button:
+  - platform: template
+    name: "Dispense Dose"
+    icon: mdi:cup-water
+    on_press:
+      - script.execute: dispense_dose
+
+  - platform: template
+    name: "Prime Pump"
+    icon: mdi:water-pump
+    entity_category: config
+    on_press:
+      - script.execute: prime_pump
+
+  - platform: template
+    name: "Stop Pump"
+    icon: mdi:stop-circle-outline
+    on_press:
+      - script.stop: dispense_dose
+      - script.stop: prime_pump
+      - switch.turn_off: pump
+
+  - platform: restart
+    name: "Restart ESP"
+    entity_category: config
+
+binary_sensor:
+  - platform: template
+    name: "Pump Running"
+    device_class: running
+    lambda: |-
+      return id(pump).state;
+
+sensor:
+  - platform: wifi_signal
+    name: "WiFi Signal"
+    entity_category: diagnostic
+    update_interval: 60s
+
+  - platform: uptime
+    name: "Uptime"
+    entity_category: diagnostic
+    update_interval: 60s

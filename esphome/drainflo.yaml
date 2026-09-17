@@ -1,0 +1,164 @@
+substitutions:
+  name: drainflo
+  friendly_name: DrainFlo
+  pump_pin: GPIO5
+  # CALIBRATION. Set this to the seconds your pump takes to deliver one cup,
+  # measured per docs/07-calibration.md. The reference build measured 105 s
+  # and uses 110 for margin.
+  dose_seconds: "110"
+  # Hard ceiling enforced on the microcontroller itself, with no network
+  # involved. Must be comfortably longer than dose_seconds.
+  max_run_seconds: "300"
+
+esphome:
+  name: ${name}
+  friendly_name: ${friendly_name}
+  name_add_mac_suffix: true
+  comment: >-
+    Automatic vinegar doser for an HVAC condensate drain line.
+    https://github.com/criterion67/drainflo
+  project:
+    name: criterion67.drainflo
+    version: "1.0"
+  on_boot:
+    priority: -100
+    then:
+      - switch.turn_off: pump
+
+esp32:
+  board: seeed_xiao_esp32c3
+  variant: esp32c3
+  framework:
+    type: esp-idf
+
+logger:
+
+api:
+
+ota:
+  - platform: esphome
+
+wifi:
+  ap: {}
+
+# Lets the user provision Wi-Fi over USB serial
+improv_serial:
+
+# Lets the user provision Wi-Fi over Bluetooth
+esp32_improv:
+  authorizer: none
+
+# In combination with wifi -> ap, lets the user provision over the fallback AP
+captive_portal:
+
+# Lets the user adopt this device into their own ESPHome Device Builder
+dashboard_import:
+  package_import_url: github://criterion67/drainflo/esphome/drainflo.yaml@main
+  import_full_config: true
+
+# =============================================================================
+# PUMP CONTROL
+#
+# GPIO5 drives the gate of an IRLB8721 MOSFET through a 100 ohm resistor, with
+# a 10k pulldown from gate to ground so the pump cannot twitch during boot.
+# The MOSFET switches the low side of a 12V peristaltic pump.
+#
+# Avoid GPIO2, GPIO8 and GPIO9 on the ESP32C3: they are strapping pins.
+# =============================================================================
+
+output:
+  - platform: gpio
+    pin: ${pump_pin}
+    id: pump_output
+
+switch:
+  - platform: output
+    id: pump
+    output: pump_output
+    # Deliberately not exposed to Home Assistant. Everything goes through the
+    # dose script, so the pump cannot be left running by a stray toggle.
+    internal: true
+    restore_mode: ALWAYS_OFF
+    on_turn_on:
+      mode: restart
+      then:
+        - delay: ${max_run_seconds}s
+        - switch.turn_off: pump
+        - logger.log:
+            level: WARN
+            format: "Pump hit the hard runtime limit and was shut off"
+
+number:
+  - platform: template
+    id: dose_seconds
+    name: "Dose Duration"
+    icon: mdi:timer-sand
+    entity_category: config
+    unit_of_measurement: s
+    min_value: 5
+    max_value: 290
+    step: 1
+    initial_value: ${dose_seconds}
+    restore_value: true
+    optimistic: true
+
+script:
+  - id: dispense_dose
+    mode: single
+    then:
+      - logger.log: "Starting a vinegar dose"
+      - switch.turn_on: pump
+      - delay: !lambda "return id(dose_seconds).state * 1000;"
+      - switch.turn_off: pump
+      - logger.log: "Vinegar dose complete"
+
+  - id: prime_pump
+    mode: single
+    then:
+      - switch.turn_on: pump
+      - delay: 20s
+      - switch.turn_off: pump
+
+button:
+  - platform: template
+    name: "Dispense Dose"
+    icon: mdi:cup-water
+    on_press:
+      - script.execute: dispense_dose
+
+  - platform: template
+    name: "Prime Pump"
+    icon: mdi:water-pump
+    entity_category: config
+    on_press:
+      - script.execute: prime_pump
+
+  - platform: template
+    name: "Stop Pump"
+    icon: mdi:stop-circle-outline
+    on_press:
+      - script.stop: dispense_dose
+      - script.stop: prime_pump
+      - switch.turn_off: pump
+
+  - platform: restart
+    name: "Restart ESP"
+    entity_category: config
+
+binary_sensor:
+  - platform: template
+    name: "Pump Running"
+    device_class: running
+    lambda: |-
+      return id(pump).state;
+
+sensor:
+  - platform: wifi_signal
+    name: "WiFi Signal"
+    entity_category: diagnostic
+    update_interval: 60s
+
+  - platform: uptime
+    name: "Uptime"
+    entity_category: diagnostic
+    update_interval: 60s
