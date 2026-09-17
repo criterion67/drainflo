@@ -54,7 +54,7 @@ Two options:
 
 ## Chemical notes
 
-**Use distilled white vinegar, 5 percent acetic acid.** Not cleaning vinegar at higher concentration, not bleach.
+**Use vinegar, not bleach.** Either ordinary distilled white vinegar at 5 percent acetic acid or cleaning vinegar at 6 percent works. The reference build runs on cleaning vinegar. The stronger acid is no problem for the liquid path, since silicone tubing is rated excellent for 10 percent acetic acid in water, and a higher concentration is if anything more effective against biofilm. What has not been verified here is whether 6 percent behaves differently from 5 against a drain pan or evaporator coil in a backup situation, so if that matters to you, use the 5 percent.
 
 **Never use bleach in a condensate drain line.** It corrodes the evaporator coil and the drain pan.
 
