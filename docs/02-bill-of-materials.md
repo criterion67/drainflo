@@ -11,13 +11,15 @@ Links are provided for convenience and go stale quickly. **The spec column is wh
 | Part | Spec | Approx. | Link | Notes |
 |---|---|---|---|---|
 | Peristaltic dosing pump | 12V DC, 3mm ID x 5mm OD silicone tube | $10 | _TBD_ | See selection notes below |
-| Dry contact relay | Shelly 1 Gen4, non UL | $19 | _TBD_ | Must accept 12V DC power. See alternatives below |
+| Dry contact relay | Shelly 1 Gen4 | $28 UL / $19 non UL | [link](https://www.amazon.com/dp/B0H8YW595V) | Must accept 12V DC power. See alternatives below |
 | Silicone tubing | 3mm ID x 5mm OD, about 3 m | $9 | _TBD_ | Must match the pump's tube size |
-| Panel mount barrel jack | 5.5 x 2.1 mm, 11 mm panel hole | $6 for 6 | _TBD_ | Only one needed |
+| Panel mount barrel jack | 5.5 x 2.1 mm, 11 mm panel hole | $6 for 6 | [link](https://www.amazon.com/dp/B0GGN5MWH5) | Only one needed |
 | 12V DC power supply | 12V, 1A or more, centre positive | on hand | _TBD_ | 2A is fine, headroom is free |
 | Vinegar jug | 1 gallon HDPE | $4 | grocery store | The jug the vinegar came in |
 | Containment bucket | 2 gallon | $6 | hardware store | Must exceed the jug's capacity |
 | Water leak sensor | Any Home Assistant compatible | varies | _TBD_ | Goes in the bottom of the bucket |
+| Lever nut connectors, 3 conductor | WAGO 221-413, 24-12 AWG | $7 for 10 | [link](https://www.amazon.com/dp/B0GLHLRZR4) | The two junction points |
+| Lever nut connectors, 2 conductor | WAGO 221-412, 24-12 AWG | $6 for 10 | [link](https://www.amazon.com/dp/B072PT3JNL) | Handy for the single O to pump run |
 | Spare PVC cleanout cap | Matching your existing cap | $2 | hardware store | Drilled, so keep the original |
 | M3 x 16 machine screws, nuts, washers | 2 of each | few $ | hardware store | Pump flange to lid |
 | M3 x 10 machine screws | 4 | $2 | hardware store | Lid to box |
