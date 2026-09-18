@@ -6,7 +6,7 @@ Once a month it pumps one cup of distilled white vinegar into the drain line cle
 
 It replaces the monthly chore of climbing into the attic with a measuring cup.
 
-**Total build cost: roughly $110 in parts plus about 60 g of filament**, buying everything new. Less if you already have a 12V supply, hookup wire and a leak sensor, which many people will. See the [bill of materials](docs/02-bill-of-materials.md) for the breakdown.
+**Reference build cost: about $77 in parts plus roughly 60 g of filament.** The relay was bought on sale, and the hookup wire, connectors and leak sensor were already on hand. Per-part prices are in the [bill of materials](docs/02-bill-of-materials.md).
 
 ---
 

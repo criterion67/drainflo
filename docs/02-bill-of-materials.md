@@ -10,20 +10,19 @@ Links are provided for convenience and go stale quickly. **The spec column is wh
 
 | Part | Spec | Approx. | Link | Notes |
 |---|---|---|---|---|
-| Peristaltic dosing pump | Kamoer NKP, 12V DC, 3mm ID x 5mm OD | $30 | [link](https://www.amazon.com/dp/B07GWJ78FN) | See selection notes below |
-| Dry contact relay | Shelly 1 Gen4, UL listed | $28 | [link](https://www.amazon.com/dp/B0H8YW595V) | Must accept 12V DC power. See alternatives below |
+| Peristaltic dosing pump | Kamoer NKP, 12V DC, 3mm ID x 5mm OD | $10 | [link](https://www.amazon.com/dp/B07GWJ78FN) | See selection notes below |
+| Dry contact relay | Shelly 1 Gen4, UL listed | $28 | [link](https://www.amazon.com/dp/B0H8YW595V) | Often on sale; the reference build paid $18. Must accept 12V DC power. See alternatives below |
 | Silicone tubing | 3mm ID x 5mm OD, 9.8 ft | $9 | [link](https://www.amazon.com/dp/B0FMF45JZH) | Must match the pump's tube size |
 | Panel mount barrel jack | 5.5 x 2.1 mm, 11 mm panel hole | $6 for 6 | [link](https://www.amazon.com/dp/B0GGN5MWH5) | Only one needed |
-| 12V DC power supply | 12V 2A, center positive, 5.5 x 2.1 mm plug | $13 for 2 | [link](https://www.amazon.com/dp/B077PW5JC3) | 1A is enough; headroom is free. Meter the polarity before use |
+| 12V DC power supply | 12V 2A, center positive, 5.5 x 2.1 mm plug | $7 | [link](https://www.amazon.com/dp/B0BZP8CYD1) | The plug must be 2.1 mm to match the jack; a 2.5 mm plug sits loose. 1A is enough. Meter the polarity before use |
 | Vinegar | 1 gallon, cleaning or distilled white | $4 | [link](https://www.walmart.com/ip/GV-Vinegar-128oz/15941853266) | Its own HDPE jug is the reservoir |
-| Containment bucket | 2 gallon | $6 | [link](https://www.homedepot.com/p/The-Home-Depot-2-gal-Homer-Bucket-RG502HD/316355946) | Must exceed the jug's capacity |
+| Containment bucket | 2 gallon | $5 | [link](https://www.homedepot.com/p/The-Home-Depot-2-gal-Homer-Bucket-RG502HD/316355946) | Must exceed the jug's capacity |
 | Water leak sensor | Any Home Assistant compatible | $15 to $30 | see below | Goes in the bottom of the bucket. Options in the next section |
-| Lever nut connectors, 3 conductor | WAGO 221-413, 24-12 AWG | $7 for 10 | [link](https://www.amazon.com/dp/B0GLHLRZR4) | The two junction points |
-| Lever nut connectors, 2 conductor | WAGO 221-412, 24-12 AWG | $6 for 10 | [link](https://www.amazon.com/dp/B072PT3JNL) | Handy for the single O to pump run |
+| Wire connectors | Two 3 way joints, one 2 way | under $1 | hardware store | Plain wire nuts are fine. Lever nuts are nicer to work with: [WAGO 221-413](https://www.amazon.com/dp/B0GLHLRZR4) $7 for 10 and [221-412](https://www.amazon.com/dp/B072PT3JNL) $6 for 10 |
 | Hookup wire | 18 AWG, a few feet | on hand | [link](https://www.amazon.com/dp/B0DXKKCS5R) | Any 18 AWG will do. The reference build used 18/3 thermostat cable left over from another job |
-| Spare PVC cleanout cap | Matching your existing cap | $2 | hardware store | Drilled, so keep the original |
-| M3 x 16 machine screws, nuts, washers | 2 of each | few $ | hardware store | Pump flange to lid |
-| M3 x 10 machine screws | 4 | $2 | hardware store | Lid to box |
+| Spare PVC cleanout cap | Matching your existing cap | $2, optional | hardware store | Recommended. The reference build drilled the cap already on the riser, which works but leaves no undrilled cap to seal the line with later |
+| M3 x 16 machine screws, nuts, washers | 2 of each | $2 for both sizes | hardware store | Pump flange to lid |
+| M3 x 10 machine screws | 4 | included above | hardware store | Lid to box |
 
 ![Core parts laid out on the bench before assembly](../images/00-parts-laid-out.jpg)
 *Most of the core parts: 12V supply, Shelly 1 Gen4, panel mount barrel jacks, silicone tubing, lever nuts.*
