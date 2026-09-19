@@ -92,6 +92,124 @@ script:
             Drain line dosed. Next dose
             {{ (now().replace(day=1) + timedelta(days=32)).replace(day=15).strftime('%B %-d, %Y') }}.
 
+  drainflo_run_dose:
+    alias: DrainFlo - Run Dose
+    icon: mdi:cup-water
+    mode: single
+    description: >-
+      Runs one complete dose: reachability check, pump on, verification that the
+      relay actually closed, the timed run, pump off, counter decrement, due date
+      update and notification.
+
+      Called from two places in automation.drainflo_dosing: the scheduled branch
+      and the manual default branch. The dose logic and the calibration number
+      therefore live in exactly one place, so if the pump tube is replaced and
+      the flow rate changes, the delay below is the only thing to edit.
+
+      A commanded dose is never assumed to have worked. The switch is checked
+      before commanding and again 5 seconds after turn on. Either check failing
+      raises the fault flag and leaves the counter untouched, because a dose that
+      did not happen must not look like one that did.
+
+      mode is single, so a second call while a dose is already running is dropped
+      rather than stacking two runs on the same pump.
+    sequence:
+      - alias: Only dose if the relay is actually reachable
+        if:
+          - condition: state
+            entity_id: switch.drainflo
+            state:
+              - unavailable
+              - unknown
+        then:
+          - action: input_boolean.turn_on
+            target:
+              entity_id: input_boolean.drainflo_pump_fault
+          - action: notify.mobile_app_pixel_9
+            data:
+              title: DrainFlo could not dose
+              message: >-
+                The relay was unreachable so no vinegar was dosed and the
+                counter was left alone. Check the relay, then dose manually
+                or dismiss.
+              data:
+                tag: drainflo_pump_fault
+                channel: Quiet Notices
+                importance: low
+                notification_icon: mdi:pump-off
+                actions:
+                  - action: DRAINFLO_FAULT_DISMISS
+                    title: Dismiss
+        else:
+          - alias: Start the pump
+            action: switch.turn_on
+            target:
+              entity_id: switch.drainflo
+          - alias: Give the relay a moment to actually close
+            delay:
+              seconds: 5
+          - alias: Confirm the pump really came on before trusting the dose
+            if:
+              - condition: state
+                entity_id: switch.drainflo
+                state: "on"
+            then:
+              # ---- CALIBRATION: set this to your dose time minus 5 ----
+              - alias: Run the remaining seconds of the dose
+                delay:
+                  seconds: 105
+              - alias: Stop the pump
+                action: switch.turn_off
+                target:
+                  entity_id: switch.drainflo
+              - alias: Spend one dose from the jug budget
+                action: input_number.decrement
+                target:
+                  entity_id: input_number.drainflo_doses_remaining
+              - alias: Record the dose and set the next due date
+                action: script.drainflo_dose_complete
+              - alias: Clear any earlier fault now that a dose succeeded
+                action: input_boolean.turn_off
+                target:
+                  entity_id: input_boolean.drainflo_pump_fault
+              - alias: Confirm the dose
+                action: notify.mobile_app_pixel_9
+                data:
+                  title: DrainFlo dosed the drain line
+                  message: >-
+                    1 cup of vinegar dosed at {{ now().strftime('%-I:%M %p') }}.
+                    {{ states('input_number.drainflo_doses_remaining') | int }}
+                    doses left in the jug. Next dose on the 15th of next month.
+                  data:
+                    tag: drainflo_dose_complete
+                    channel: Quiet Notices
+                    importance: low
+                    notification_icon: mdi:pipe-valve
+            else:
+              - alias: Belt and braces, command off anyway
+                action: switch.turn_off
+                continue_on_error: true
+                target:
+                  entity_id: switch.drainflo
+              - action: input_boolean.turn_on
+                target:
+                  entity_id: input_boolean.drainflo_pump_fault
+              - action: notify.mobile_app_pixel_9
+                data:
+                  title: DrainFlo pump did not start
+                  message: >-
+                    The relay was commanded on but did not report on. No
+                    vinegar was dosed and the counter was left alone. Check
+                    the relay, then dose manually or dismiss.
+                  data:
+                    tag: drainflo_pump_fault
+                    channel: Quiet Notices
+                    importance: low
+                    notification_icon: mdi:pump-off
+                    actions:
+                      - action: DRAINFLO_FAULT_DISMISS
+                        title: Dismiss
+
   drainflo_refilled:
     alias: DrainFlo - Vinegar Refilled
     icon: mdi:bottle-tonic-plus
@@ -214,9 +332,20 @@ automation:
       restart in case HA died mid dose. Physical containment is the last line
       of defense and is not optional.
 
-      VERIFICATION. A commanded dose is not assumed to have worked. The switch
-      is checked before commanding, then checked again 5 seconds after turn on.
-      Either check failing raises the fault flag and notifies.
+      WHERE THE DOSE LOGIC LIVES. Not here. Both the scheduled branch and the
+      manual default branch call script.drainflo_run_dose, so the dose sequence
+      and the calibration number exist in exactly one place. That script also
+      holds the verification: the switch is checked before commanding and again
+      5 seconds after turn on, and either check failing raises the fault flag
+      and leaves the counter untouched.
+
+      THE DEFAULT BRANCH TRAP. default catches every run whose branch conditions
+      fail, not only manual ones. The scheduled branch therefore matches on its
+      trigger id ALONE and tests the date inside its sequence. Moving that date
+      test up into the branch conditions makes every day that is not the 15th
+      fall through to default, and the pump then doses daily. This is not
+      hypothetical: it happened in the reference build on 2026-09-18 and
+      2026-09-19 and cost two unwanted doses before it was caught.
     triggers:
       - trigger: time
         at: "05:00:00"
@@ -245,109 +374,19 @@ automation:
     actions:
       - choose:
           # -------------------------------------------------------------------
-          - alias: Monthly dose on the 15th
+          - alias: Nightly 05:00 check, dose only when it is the 15th
             conditions:
               - condition: trigger
                 id: scheduled_dose
-              - alias: Today is the 15th of the month
-                condition: template
-                value_template: "{{ now().day == 15 }}"
             sequence:
-              - alias: Only dose if the relay is actually reachable
+              - alias: Dose only on the 15th; any other day this branch does nothing
                 if:
-                  - condition: state
-                    entity_id: switch.drainflo
-                    state:
-                      - unavailable
-                      - unknown
+                  - alias: Today is the 15th of the month
+                    condition: template
+                    value_template: "{{ now().day == 15 }}"
                 then:
-                  - action: input_boolean.turn_on
-                    target:
-                      entity_id: input_boolean.drainflo_pump_fault
-                  - action: notify.mobile_app_pixel_9
-                    data:
-                      title: DrainFlo missed the monthly dose
-                      message: >-
-                        The relay was unreachable at 05:00 on the 15th so no
-                        vinegar was dosed. The drain line will not be flushed
-                        until next month unless you dose it manually.
-                      data:
-                        tag: drainflo_pump_fault
-                        channel: Quiet Notices
-                        importance: low
-                        notification_icon: mdi:pump-off
-                        actions:
-                          - action: DRAINFLO_FAULT_DISMISS
-                            title: Dismiss
-                else:
-                  - alias: Start the pump
-                    action: switch.turn_on
-                    target:
-                      entity_id: switch.drainflo
-                  - alias: Give the relay a moment to actually close
-                    delay:
-                      seconds: 5
-                  - alias: Confirm the pump really came on before trusting the dose
-                    if:
-                      - condition: state
-                        entity_id: switch.drainflo
-                        state: "on"
-                    then:
-                      # ---- CALIBRATION: set this to your dose time minus 5 ----
-                      - alias: Run the remaining seconds of the dose
-                        delay:
-                          seconds: 105
-                      - alias: Stop the pump
-                        action: switch.turn_off
-                        target:
-                          entity_id: switch.drainflo
-                      - alias: Spend one dose from the jug budget
-                        action: input_number.decrement
-                        target:
-                          entity_id: input_number.drainflo_doses_remaining
-                      - alias: Record the dose and set the next due date
-                        action: script.drainflo_dose_complete
-                      - alias: Clear any earlier fault now that a dose succeeded
-                        action: input_boolean.turn_off
-                        target:
-                          entity_id: input_boolean.drainflo_pump_fault
-                      - alias: Confirm the dose
-                        action: notify.mobile_app_pixel_9
-                        data:
-                          title: DrainFlo dosed the drain line
-                          message: >-
-                            1 cup of vinegar dosed at 05:00.
-                            {{ states('input_number.drainflo_doses_remaining') | int }}
-                            doses left in the jug. Next dose on the 15th of next month.
-                          data:
-                            tag: drainflo_dose_complete
-                            channel: Quiet Notices
-                            importance: low
-                            notification_icon: mdi:pipe-valve
-                    else:
-                      - alias: Belt and braces, command off anyway
-                        action: switch.turn_off
-                        continue_on_error: true
-                        target:
-                          entity_id: switch.drainflo
-                      - action: input_boolean.turn_on
-                        target:
-                          entity_id: input_boolean.drainflo_pump_fault
-                      - action: notify.mobile_app_pixel_9
-                        data:
-                          title: DrainFlo pump did not start
-                          message: >-
-                            The relay was commanded on at 05:00 but did not
-                            report on. No vinegar was dosed. Check the relay,
-                            then dose manually or dismiss.
-                          data:
-                            tag: drainflo_pump_fault
-                            channel: Quiet Notices
-                            importance: low
-                            notification_icon: mdi:pump-off
-                            actions:
-                              - action: DRAINFLO_FAULT_DISMISS
-                                title: Dismiss
+                  - alias: Hand off to the shared dose routine
+                    action: script.drainflo_run_dose
 
           # -------------------------------------------------------------------
           - alias: Safety cutoff, the pump has run far longer than a dose
@@ -426,6 +465,19 @@ automation:
                 id: fault_dismiss
             sequence:
               - action: script.drainflo_clear_fault
+        default:
+          # A manual run from the UI carries no trigger id, so it matches no
+          # branch above and lands here. Doses immediately, ignoring the date.
+          #
+          # WARNING, learned the hard way: default catches EVERY run whose
+          # branch conditions fail, not just manual ones. The scheduled branch
+          # above must therefore match on its trigger id ALONE, with the date
+          # test inside its sequence. If you move that date test up into the
+          # branch conditions, every day that is not the 15th falls through to
+          # here and the pump doses daily.
+          - alias: Manual run, dose regardless of the date
+            action: script.drainflo_run_dose
+
 
   # ---------------------------------------------------------------------------
   - id: drainflo_refill_reminder
